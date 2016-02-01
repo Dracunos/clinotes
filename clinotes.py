@@ -1,5 +1,13 @@
 import argparse
+import os
 import re
+import sys
+
+if getattr(sys, 'frozen', False):
+    path = os.path.dirname(sys.executable)
+else:
+    path = os.path.dirname(os.path.realpath(__file__))
+notes_filepath = os.path.join(path, "clinote.txt")
 
 parser = argparse.ArgumentParser()
 action = parser.add_mutually_exclusive_group(required=True)
@@ -72,7 +80,7 @@ if args.addnote:
     if not tags:
         print "You must add at least one tag inside equal-brackets (no spaces). Example: =[note]= This is a note tagged 'note'."
     else:
-        with open("clinote.txt", 'a+') as notefile:
+        with open(notes_filepath, 'a+') as notefile:
             try:
                 last_note = get_all_notes(notefile)[-1]
                 nl = '\n'
@@ -96,7 +104,7 @@ elif args.get or args.getids:
         splitter = ", "
     tag_list = get_tags.split(splitter)
     try:
-        with open("clinote.txt") as notefile:
+        with open(notes_filepath) as notefile:
             note_list = get_notes(tag_list, notefile)
     except IOError:
         note_list = []
@@ -107,7 +115,7 @@ elif args.getall or args.getallids:
     if args.getallids:
         include_id = True
     try:
-        with open("clinote.txt") as notefile:
+        with open(notes_filepath) as notefile:
             note_list = get_all_notes(notefile)
     except IOError:
         note_list = []
@@ -117,11 +125,11 @@ elif args.delnote:
     note = args.delnote
     note_deleted = False
     try:
-        with open("clinote.txt") as notefile:
+        with open(notes_filepath) as notefile:
             lines = notefile.readlines()
     except IOError:
         lines = []
-    with open("clinote.txt", "w+") as notefile:
+    with open(notes_filepath, "w+") as notefile:
         new_lines = []
         for line in lines:
             if line.split("-=-")[0] == note:
