@@ -20,3 +20,5 @@ Simple cli notetaking app
 This is my simple little tag-based notetaking command line app. Just stick the exe in a path folder for easy command line access.
 
 It creates a clinote.txt file wherever you put it (once you start using it). I used python and cx_freeze. Only tested on Windows.
+
+The  equalbrtags branch uses =[tag]= instead of [tag] for note tagging.
