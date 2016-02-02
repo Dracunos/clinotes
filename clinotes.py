@@ -13,7 +13,7 @@ parser = argparse.ArgumentParser()
 action = parser.add_mutually_exclusive_group(required=True)
 action.add_argument("--addnote",
                     help=("Add a note in quotes. Add at least one tag in "
-                          "equal-brackets (no spaces). Example: =[note]= This "
+                          "brackets (no spaces). Example: [note] This "
                           "is a note tagged 'note'."))
 action.add_argument("--get",
                     help="Input a note tag or tags to find in quotes.")
@@ -34,7 +34,7 @@ args = parser.parse_args()
 
 
 def find_tags(string):
-    tags = re.findall(u"=\[([a-zA-Z0-9\-_+=/\\'\"\:\;\.]+)\]=", string)
+    tags = re.findall(u"\[([a-zA-Z0-9\-_+=/\\'\"\:\;\.]+)\]", string)
     return [tag.lower() for tag in tags]
 
 def get_notes(tag_list, note_obj):
@@ -81,7 +81,7 @@ def print_notes(note_list, include_id):
 if args.addnote:
     tags = find_tags(args.addnote)
     if not tags:
-        print "You must add at least one tag inside equal-brackets (no spaces). Example: =[note]= This is a note tagged 'note'."
+        print "You must add at least one tag inside equal-brackets (no spaces). Example: [note] This is a note tagged 'note'."
     else:
         with open(notes_filepath, 'a+') as notefile:
             try:

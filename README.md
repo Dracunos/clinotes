@@ -6,9 +6,9 @@ Simple cli notetaking app
   
     optional arguments:
       -h, --help         show this help message and exit
-      --addnote ADDNOTE  Add a note in quotes. Add at least one tag in equal-
-                         brackets (no spaces). Example: =[note]= This is a note
-                         tagged 'note'.
+      --addnote ADDNOTE  Add a note in quotes. Add at least one tag in brackets
+                         (no spaces). Example: [note] This is a note tagged
+                         'note'.
       --get GET          Input a note tag or tags to find in quotes.
       --getall           Gets all notes.
       --getids GETIDS    Input tags, results include ids needed for deletion.
