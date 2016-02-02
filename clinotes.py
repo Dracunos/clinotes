@@ -27,6 +27,9 @@ action.add_argument("--getallids",
                     action='store_true')
 action.add_argument("--delnote",
                     help="Input a note id for deletion.")
+action.add_argument("--openfile",
+                    help="Opens clinote.txt file with default editor.",
+                    action='store_true')
 args = parser.parse_args()
 
 
@@ -141,3 +144,6 @@ elif args.delnote:
         print "Note successfully deleted."
     else:
         print "Note not found."
+
+elif args.openfile:
+    os.startfile(notes_filepath)
