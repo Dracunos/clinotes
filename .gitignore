@@ -1,0 +1,4 @@
+.idea
+dist/_hashlib.pyd
+dist/bz2.pyd
+dist/unicodedata.pyd
